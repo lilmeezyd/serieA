@@ -1,7 +1,7 @@
 function Footer() {
     return (
       <footer className="footer">
-          <p>Copyright &copy; Uganda Fanatsy League {new Date().getFullYear()}</p>
+          <p>Copyright &copy; SerieA villa {new Date().getFullYear()}</p>
       </footer>
     )
   }

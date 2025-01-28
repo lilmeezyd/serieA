@@ -314,6 +314,49 @@ form.login-cs {
   font-weight: 600;
 }
 
+.login {
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-group {
+  padding: 0.5rem;
+}
+
+.form-group label {
+  padding-right: 0.2rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-group-login label {
+  display: block;
+  text-align: left;
+}
+
+.login-form {
+  width: 60%;
+  margin: 50px auto;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.forgot {
+  text-align: center;
+}
+
+@media(max-width: 760px) {
+  .login-form {
+    width: 100%;
+  }
+}
+
 /* Button Controls */
 .button-controls {
   display: flex;
