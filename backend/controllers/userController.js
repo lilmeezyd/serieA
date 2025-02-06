@@ -1,11 +1,39 @@
 import asyncHandler from "express-async-handler";
 import axios from "axios"
+import User from "../models/userModel.js"
+
+
+//@desc Register admin 
+//@route POST /api/users/admin
+//@access No one
+const registerAdmin = asyncHandler(async (req, res) => {
+  const { firstName, lastName, email } = req.body
+  const doesExist = await User.findOne({email})
+
+  if(!firstName || !lastName || !email) {
+    res.status(400)
+    throw new Error('Add all fields')
+  }
+
+  if(doesExist) {
+    res.status(400)
+    throw new Error('Admin alreay registered')
+  }
+
+  const admin = await User.create({firstName, lastName, email})
+  res.status(200).json(admin)
+})
 
 //@desc Auth user/set token
 //@route POST /api/users/auth
 //@access Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  const doesExist = await User.findOne({email})
+  if(!doesExist) {
+    res.status(404)
+    throw new Error('User not registred, check with your admin')
+  }
   let config = {
     method: "post",
     maxBodyLength: Infinity,
@@ -61,6 +89,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 
 export {
+  registerAdmin,
   authUser,
   authRefreshToken,
   logoutUser

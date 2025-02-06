@@ -357,6 +357,56 @@ form.login-cs {
   }
 }
 
+/* Admin */
+.admin-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 30px;
+}
+
+.admin-panel-child {
+  border: 1px solid #aaa;
+  border-radius: 1rem;
+  padding: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: sepia(1);
+  -webkit-backdrop-filter: sepia(1);
+}
+
+.admin-update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.admin-panel-line {
+  width: 75%;
+  height: 1px;
+  border: 1px solid #aaa;
+  margin: auto;
+}
+
+.admin-h5 {
+  text-align: center;
+}
+
+.admin-actual-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-options label {
+  font-weight: 600;
+}
+
 /* Button Controls */
 .button-controls {
   display: flex;

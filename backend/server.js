@@ -4,26 +4,29 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
+import managerRoutes from "./routes/managerRoutes.js"
 import cookieParser from 'cookie-parser'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
+import cors from 'cors'
 dotenv.config()
 
 
-//connectDB()
+connectDB()
 const app = express()
 const port = process.env.PORT || 5000
 app.use(express.json())
 app.use(urlencoded({ extended: true }))
 app.use(cookieParser())
-/*const corsConfig = {
+const corsConfig = {
   origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }
 app.use(cors(corsConfig))
-app.options("", cors(corsConfig))*/
+app.options("", cors(corsConfig))
 app.use('/api/users', userRoutes)
+app.use('/api/managers', managerRoutes)
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
   //const __dirname = path.dirname(__filename); // get the name of the directory
   // Serve the static files from the React app

@@ -1,13 +1,31 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useLoginMutation } from '../slices/userApiSlice'
+import { setCredentials } from '../slices/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Login = () => {
     const initialState = { email: '', password: '' }
     const [data, setData] = useState(initialState)
     const { email, password } = data
+    const [login, isLoading] = useLoginMutation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const onSubmit = (e) => {
+    const { userInfo } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        if(userInfo) {
+          navigate('/')
+        }
+      }, [navigate, userInfo])
+
+    const onSubmit = async (e) => {
         e.preventDefault()
+        const res = await login({ email, password }).unwrap()
+        dispatch(setCredentials({ ...res }))
+        navigate('/')
+        console.log(res)
         setData(initialState)
     }
 
